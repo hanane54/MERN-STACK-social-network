@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://hanane:lakmouritaouil@clusternodejs.yurlm.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "hananeScretToken"
+}
