@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://hanane:lakmouritaouil@clusternodejs.yurlm.mongodb.net/?retryWrites=true&w=majority",
-    "jwtSecret": "hananeScretToken"
+    "jwtSecret": "hananeScretToken",
+    "githubClientId":"5e12aafcaf1f56fdeb30",
+    "githubSecret":"f6a007c189fe9cc09ef6903d8bc0a71a5b29b6f3"
 }
