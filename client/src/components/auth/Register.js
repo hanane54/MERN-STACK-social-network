@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
-import {Link} from 'react-router-dom'
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
-export const Register = () => {
+export const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,43 +19,42 @@ export const Register = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    if(password !== password2){
-        console.log('Passwords do not match');
+    if (password !== password2) {
+      setAlert("Passwords do not match", "danger", 3000);
     } else {
-        console.log('SUCCESS');
-        /*************     Here is how we can access the backend without redux and stuff    **********/
-        //console.log(formData);
-        // const newUser = {
-        //     name,
-        //     email,
-        //     password
-        // }
-        // try{
-        //     const config = {
-        //         headers:{
-        //             'Content-Type': 'application/json'
-        //         }
-        //     }
-        //     const body = JSON.stringify(newUser);
-        //     const res = await axios.post('/api/users', body, config);
-        //     //console.log(res);
-        //     console.log(res.data);
-        // }catch(err){
-        //     console.error(err.response.data)
-        // }
+      console.log("SUCCESS");
+      /*************     Here is how we can access the backend without redux and stuff    **********/
+      //console.log(formData);
+      // const newUser = {
+      //     name,
+      //     email,
+      //     password
+      // }
+      // try{
+      //     const config = {
+      //         headers:{
+      //             'Content-Type': 'application/json'
+      //         }
+      //     }
+      //     const body = JSON.stringify(newUser);
+      //     const res = await axios.post('/api/users', body, config);
+      //     //console.log(res);
+      //     console.log(res.data);
+      // }catch(err){
+      //     console.error(err.response.data)
+      // }
     }
+  };
 
-  }
-  
   return (
     <Fragment>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Create Your Account
       </p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
@@ -83,7 +85,7 @@ export const Register = () => {
             name="password"
             minLength="6"
             value={password}
-            onChange={e=> onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className="form-group">
@@ -93,7 +95,7 @@ export const Register = () => {
             name="password2"
             minLength="6"
             value={password2}
-            onChange={e=> onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -105,4 +107,8 @@ export const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);
