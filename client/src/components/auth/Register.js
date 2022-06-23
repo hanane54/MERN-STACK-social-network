@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import {Link} from 'react-router-dom'
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +16,32 @@ export const Register = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if(password !== password2){
         console.log('Passwords do not match');
     } else {
-        console.log(formData);
+        console.log('SUCCESS');
+        /*************     Here is how we can access the backend without redux and stuff    **********/
+        //console.log(formData);
+        // const newUser = {
+        //     name,
+        //     email,
+        //     password
+        // }
+        // try{
+        //     const config = {
+        //         headers:{
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }
+        //     const body = JSON.stringify(newUser);
+        //     const res = await axios.post('/api/users', body, config);
+        //     //console.log(res);
+        //     console.log(res.data);
+        // }catch(err){
+        //     console.error(err.response.data)
+        // }
     }
 
   }
@@ -78,7 +99,7 @@ export const Register = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
   );
