@@ -3,6 +3,7 @@ import {
     REGISTER_FAIL
 } from '../actions/types';
 
+
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated : null,
@@ -10,7 +11,7 @@ const initialState = {
     user: null,
 }
 
-export default function(state= initialState, action){
+function authReducer(state= initialState, action) {
     const {type, payload} = action;
     switch(type){
         case REGISTER_SUCCESS:
@@ -20,7 +21,7 @@ export default function(state= initialState, action){
                 ...payload,
                 isAuthenticated: true,
                 loading: false
-            }
+            };
         case REGISTER_FAIL: 
             localStorage.removeItem('token');
             return {
@@ -28,8 +29,10 @@ export default function(state= initialState, action){
                 token: null,
                 isAuthenticated: false,
                 loading: false
-            }
+            };
         default:
             return state;
     }
 }
+
+export default authReducer;

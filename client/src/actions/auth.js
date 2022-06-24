@@ -9,7 +9,7 @@ export const register =
   ({ name, email, password }) =>
   async (dispatch) => {
     const config = {
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     }
@@ -17,6 +17,7 @@ export const register =
 
     try {
         const res = await axios.post('/api/users', body, config);
+
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
@@ -25,14 +26,15 @@ export const register =
 
         const errors = err.response.data.errors;
 
-        if(!errors){
+        if(errors){
             errors.forEach(error => {
-                dispatch(setAlert(Error.msg, 'danger'))
+                dispatch(setAlert(error.msg, 'danger'))
             });
         }
 
         dispatch({
-            type: REGISTER_FAIL
+            type: REGISTER_FAIL,
+            payload: err.response.data.errors,
         })
     }
   };
