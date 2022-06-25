@@ -37,15 +37,7 @@ const App = () => {
               <Route exact path="/" element={<Landing />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/login" element={<Login />} />
-              <Route
-                exact
-                path="/dashboard"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              />
+              <Route exact path="/dashboard" element={<Dashboard />} />
             </Routes>
           </section>
         </Fragment>
