@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
-const EditProfile = ({ profile: { profile, loading }, createProfile, get }) => {
+const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile }) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -26,6 +26,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, get }) => {
 
   useEffect(() => {
     getCurrentProfile();
+    console.log(profile)
     setFormData({
       company: loading || !profile.company ? "" : profile.company,
       website: loading || !profile.website ? "" : profile.website,

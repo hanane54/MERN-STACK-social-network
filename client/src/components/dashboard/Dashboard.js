@@ -4,16 +4,19 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layouts/Spinner";
 import DashboardActions from "./DashboardActions";
+import Experience from "./Experience";
+import Education from "./Education";
 import { getCurrentProfile } from "../../actions/profile";
 
 export const Dashboard = ({
-  getCurrentProfile,
-  auth: { user },
   profile: { profile, loading },
+  auth: { user },
+  getCurrentProfile,
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+    console.log(profile)
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -26,6 +29,8 @@ export const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <Experience experience = {profile.experience} />
+          <Experience education = {profile.education} />
         </Fragment>
       ) : (
         <Fragment>
