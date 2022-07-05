@@ -14,11 +14,16 @@ const Education = ({ education, deleteEducation }) => {
         {edu.to === null ? (
           " Now"
         ) : (
-          (<Moment format="YYYY/MM/DD">{edu.to}</Moment>)
+          <Moment format="YYYY/MM/DD">{edu.to}</Moment>
         )}
       </td>
       <td>
-        <button onClick={() => deleteEducation(edu._id)} className="btn btn-danger">Delete</button>
+        <button
+          onClick={() => deleteEducation(edu._id)}
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
       </td>
     </tr>;
   });
@@ -41,8 +46,8 @@ const Education = ({ education, deleteEducation }) => {
 };
 
 Education.propTypes = {
-    education: PropTypes.array.isRequired,
-    deleteEducation: PropTypes.func.isRequired,
+  education: PropTypes.array.isRequired,
+  deleteEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, {deleteEducation})(Education);
+export default connect(null, { deleteEducation })(Education);
